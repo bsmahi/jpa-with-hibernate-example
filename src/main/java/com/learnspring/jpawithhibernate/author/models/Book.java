@@ -3,6 +3,7 @@ package com.learnspring.jpawithhibernate.author.models;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name = "BOOK_DETAILS")
 public class Book {
 
     @Id
@@ -12,6 +13,9 @@ public class Book {
     @Column(name = "BOOK_TITLE")
     private String title;
 
+    @Column(name = "BOOK_DESCRIPTION")
+    private String description;
+
     @ManyToOne
     @JoinColumn(name = "author_id")
     private Author author;
@@ -20,12 +24,13 @@ public class Book {
     public Book() {
     }
 
-    public Book(String title, Author author) {
+    public Book(String title, String description) {
         this.title = title;
-        this.author = author;
+        this.description = description;
     }
 
     // Getters and Setters
+
     public Long getId() {
         return id;
     }
@@ -42,11 +47,27 @@ public class Book {
         this.title = title;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     public Author getAuthor() {
         return author;
     }
 
     public void setAuthor(Author author) {
         this.author = author;
+    }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                '}';
     }
 }

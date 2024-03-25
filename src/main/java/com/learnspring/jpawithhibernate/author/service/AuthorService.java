@@ -17,8 +17,8 @@ public class AuthorService {
         this.repository = repository;
     }
 
-    public void create(Author author, List<Book> books) {
-        repository.saveAuthorWithBooks(author, books);
+    public Author create(Author author) {
+        return repository.saveAuthorWithBooks(author);
     }
 
     public Author findAuthorById(long id) {
@@ -27,5 +27,9 @@ public class AuthorService {
 
     public List<Book> findBooksByAuthor(Author author) {
         return repository.findBooksByAuthor(author);
+    }
+
+    public List<Author> findAll() {
+        return repository.findAll();
     }
 }

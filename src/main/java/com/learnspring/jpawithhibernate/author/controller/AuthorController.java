@@ -23,8 +23,8 @@ public class AuthorController {
 
     @PostMapping("/author")
     @Operation(summary = "Create Author with Book Details")
-    public ResponseEntity<Void> saveAuthorWithBooks(@RequestBody Author author, @RequestBody List<Book> books) {
-        service.create(author, books);
+    public ResponseEntity<Author> saveAuthorWithBooks(@RequestBody Author author, @RequestBody List<Book> books) {
+        service.create(author);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 

@@ -4,6 +4,7 @@ import com.learnspring.jpawithhibernate.author.models.Author;
 import com.learnspring.jpawithhibernate.author.models.Book;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.TypedQuery;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Root;
@@ -19,9 +20,9 @@ public class AuthorRepository {
     private EntityManager entityManager;
 
     @Transactional
-    public void saveAuthorWithBooks(Author author, List<Book> books) {
-        author.setBooks(books);
+    public Author saveAuthorWithBooks(Author author) {
         entityManager.persist(author);
+        return author;
     }
 
     public Author findAuthorById(Long id) {
@@ -34,5 +35,10 @@ public class AuthorRepository {
         Root<Book> root = query.from(Book.class);
         query.select(root).where(builder.equal(root.get("author"), author));
         return entityManager.createQuery(query).getResultList();
+    }
+
+    public List<Author> findAll() {
+        TypedQuery<Author> query = entityManager.createQuery("SELECT a FROM Author a", Author.class);
+        return query.getResultList();
     }
 }
