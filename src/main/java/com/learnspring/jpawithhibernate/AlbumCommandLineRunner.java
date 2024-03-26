@@ -45,11 +45,11 @@ public class AlbumCommandLineRunner implements CommandLineRunner {
 //        System.out.println();
 //        System.out.println("FIND ALL ALBUM DETAILS" + repository.findAll());
 
-        Author authorOne = new Author("authorOne", "descriptionOne");
-        Author authorTwo = new Author("authorTwo", "descriptionTwo");
+        Author authorOne = new Author("authorOne", "descriptionOne");//1
+        Author authorTwo = new Author("authorTwo", "descriptionTwo");//2
 
-        Book bookOne = new Book("titleBookOne", "bookDescriptionOne");
-        Book bookTwo = new Book("titleBookTwo", "bookDescriptionTwo");
+        Book bookOne = new Book("titleBookOne", "bookDescriptionOne");//1, 1
+        Book bookTwo = new Book("titleBookTwo", "bookDescriptionTwo");//2, 2
 
         authorOne.setBooks(List.of(bookOne));
         authorTwo.setBooks(List.of(bookTwo));

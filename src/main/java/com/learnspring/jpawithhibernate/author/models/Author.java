@@ -7,7 +7,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "AUTHOR_DETAILS")
-public class Author {
+public class Author { //PARENT ENTITY
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,11 +20,16 @@ public class Author {
     @Column(name = "author_description")
     private String description;
 
+    //  1, authorname, books[]
+    //  2, authorname, books[]
+
+    // 2, bookname, bookdescrption, null
+
     // mappedBy="author" This attribute specifies the field in the related entity (the "many" side of the relationship) that owns the relationship
     // CascadeType.PERSIST means that persisting the owning entity will also persist the associated entities
     // CascadeType.MERGE means that merging the owning entity will also merge the associated entities.
     // The CascadeType.REMOVE strategy is useful for the @OneToMany and @OneToOne associations only.
-    // orphanRemoval = true > will delete the child entries, if we delete the parent entity record
+    // orphanRemoval = true > will delete the child or disassociate the child element, if we delete the parent entity record
     // orphanRemoval = false > update the child entries
     @OneToMany(mappedBy = "author", cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER, orphanRemoval = true)
     private List<Book> books = new ArrayList<>();
